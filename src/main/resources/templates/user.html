@@ -1,0 +1,158 @@
+<!doctype html>
+<html class="no-js fixed-layout" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人中心 | 程序猿小尹</title>
+    <link href="https://lib.baomitu.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+    <link rel="stylesheet" th:href="@{/css/plugs_paging.css}">
+    <link href="https://lib.baomitu.com/font-awesome/5.8.0/css/fontawesome.min.css" rel="stylesheet">
+
+    <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://lib.baomitu.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+</head>
+<body>
+
+<!--引入共有头部-->
+<div th:replace="header :: header"></div>
+
+<!--页面主体内容-->
+<div class="am-cf admin-main" style="padding-top: 0">
+
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+        <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <ul class="userList am-list admin-sidebar-list">
+                <li class="clickLi personalDate" ><a><i class="am-icon-credit-card-alt am-icon-fw"></i> 个人资料</a></li>
+<!--                <li class="clickLi basicSetting"><a><i class="am-icon-cog am-icon-fw"></i> 安全设置</a></li>-->
+                <li class="clickLi leaveWord"><a><i class="am-icon-comments am-icon-fw"></i> 留言管理</a></li>
+            </ul>
+
+        </div>
+    </div>
+    <!--右侧-->
+    <div class="admin-content">
+        <div class="userInfo">
+            <div id="personalDate">
+                <ol class="am-breadcrumb  am-breadcrumb-slash">
+                    <li class="am-active am-icon-home"> 个人主页</li>
+                    <li class="am-active">个人资料</li>
+                </ol>
+                <div class="zhy-personalDate">
+                    <div class="personalDateHeadPortrait">
+                        <div class="headPortrait">
+                            <img id="headPortrait" src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/loading.gif"/>
+                        </div>
+                        <div class="headChange">
+                            <div class="headPortraitChange">
+                                <input id="imgTest" type="file" onchange="imgChange()" accept=".gif,.jpg,.jpeg,.png">
+                                <a>更改头像</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="personalDateForm">
+                        <form id="personalDateForm">
+                            <div class="userNameTable">
+                                <label for="username">昵称</label>
+                                <input class="formInput" type="text" id="username" placeholder="填写你的昵称">
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                            </div>
+                            <div class="phoneTable">
+                                <label>手机</label>
+                                <div class="phone" id="personalPhone"></div>
+                                <i class="phoneCheck am-icon-check">已验证</i>
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                            </div>
+
+                            <div class="birthdayTable">
+                                <label for="birthday">生日</label>
+                                <input class="formInput" type="text" id="birthday" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years'}" placeholder="填写你的生日"/>
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                            </div>
+                            <div class="genderTable">
+                                <label>性别</label>
+                                <label class="am-radio-inline" style="width: 60px">
+                                    <input class="formInput" type="radio" id="male" name="gender" value="male" data-am-ucheck>
+                                    <span class="am-icon-male "></span>
+                                </label>
+                                <label class="am-radio-inline" style="width: 60px">
+                                    <input class="formInput" type="radio" id="female" name="gender" value="female" data-am-ucheck>
+                                    <span class="am-icon-female "></span>
+                                </label>
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                            </div>
+                            <div class="emailTable">
+                                <label for="email">邮箱</label>
+                                <input class="formInput" type="email" id="email" placeholder="填写你的邮箱">
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+                            </div>
+
+                            <button type="button" id="savePersonalDateBtn" class="savePersonalDateBtn am-btn am-btn-warning">保存</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<!--            <div id="basicSetting">-->
+<!--                <ol class="am-breadcrumb  am-breadcrumb-slash">-->
+<!--                    <li class="am-active am-icon-home"> 个人主页</li>-->
+<!--                    <li class="am-active">安全设置</li>-->
+<!--                </ol>-->
+<!--                <div class="zhy-basicSetting">-->
+<!--                    <form id="basicSettingForm">-->
+<!--                        <div class="phoneTable">-->
+<!--                            <label for="phone">手机</label>-->
+<!--                            <input class="formInput" type="text" id="phone" placeholder="填写你的手机号">-->
+<!--                            <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />-->
+<!--                        </div>-->
+<!--                        <div class="authCodeTable">-->
+<!--                            <label for="authCode">验证码</label>-->
+<!--                            <input class="formInput" type="text" id="authCode" placeholder="填写验证码">-->
+<!--                            <button type="button" id="authCodeBtn" class="authCodeBtn am-btn am-btn-secondary am-round am-btn-sm">获取验证码</button>-->
+<!--                            <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />-->
+<!--                        </div>-->
+<!--                        <div class="passwordTable">-->
+<!--                            <label for="password">新密码</label>-->
+<!--                            <input class="formInput" type="password" id="password" placeholder="填写你的密码">-->
+<!--                            <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />-->
+<!--                        </div>-->
+<!--                        <div class="phoneTable">-->
+<!--                            <label for="surePassword">确认密码</label>-->
+<!--                            <input class="formInput" type="password" id="surePassword" placeholder="再次填写你的密码">-->
+<!--                            <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />-->
+<!--                        </div>-->
+<!--                        <button type="button" id="changePasswordBtn" class="changePasswordBtn am-btn am-btn-warning">保存</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div id="leaveWord">
+                <div class="msgLeaveMessage">
+                    <ol class="am-breadcrumb  am-breadcrumb-slash navigationBar">
+                        <li class="am-active am-icon-home"> 个人主页</li>
+                        <li class="am-active">留言管理</li>
+                    </ol>
+                    <div class="msgContent am-animation-slide-right">
+                        <!--填充留言-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--消息盒子+反馈-->
+    <div th:replace="other :: other"></div>
+
+</div>
+
+<!--手机适配显示左侧按钮-->
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<script th:src="@{/js/all.js}"></script>
+<script th:src="@{/js/plugs_paging.js}"></script>
+<script th:src="@{/js/user.js}"></script>
+</body>
+</html>

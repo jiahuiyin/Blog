@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>程序猿小尹</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link href="https://lib.baomitu.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+    <link href="https://lib.baomitu.com/font-awesome/5.8.0/css/fontawesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/plugs_paging.css}">
+
+    <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://lib.baomitu.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <div th:replace="header :: header"></div>
+
+    <div id="main" style=" margin:20px auto;width:1000px;">
+
+
+
+        <div class="am-g"  >
+            <div class="showArticle am-u-sm-12 ">
+                <div id="errorWords" style="display: none">
+                    <div className="error404Page">
+                         <img height="350" width="700" th:src="@{/img/errorpage/nofound.png}"/>
+                         <a align="center" th:href="@{/}"><u>返回首页</u></a>
+                    </div>
+                </div>
+                <div class="articles">
+
+                    <div class="center">
+                        <div class="empty">
+                            <header class="article-header">
+                                <h1 itemprop="name">
+                                    <a class="article-title" href="#" target="_blank">&nbsp;</a>
+                                </h1>
+                                <div class="article-meta row">
+                                    <span class="articleType am-badge am-badge-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                                </div>
+                            </header>
+                            <div class="article-entry" style="height: 200px">
+                            </div>
+                            <div class="read-all">
+                                <a href="#" target="_blank">阅读全文 <i class="am-icon-angle-double-right"></i></a>
+                            </div>
+                            <hr>
+                            <div class="article-tags">
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--引入共有底部-->
+    <div th:replace="footer :: footer"></div>
+    <!--消息盒子+反馈-->
+    <div th:replace="other :: other"></div>
+</div>
+
+<script th:src="@{/js/search.js}"></script>
+<script th:src="@{/js/all.js}"></script>
+<script th:src="@{/js/plugs_paging.js}"></script>
+</body>
+</html>
