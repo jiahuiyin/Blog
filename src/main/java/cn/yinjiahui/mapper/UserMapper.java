@@ -13,7 +13,8 @@ public interface UserMapper {
     @Select("select * from user where phone=#{phone}")
     @Results({
 
-            @Result(column = "id", property = "roles", javaType = List.class, many = @Many(select = "com.yin.mapper.RoleMapper.getRoleNameByUserId")),
+            @Result(column = "id", property = "roles", javaType = List.class,
+                    many = @Many(select = "cn.yinjiahui.mapper.RoleMapper.getRoleNameByUserId")),
     })
     User findUserByPhone(@Param("phone") String phone);
 

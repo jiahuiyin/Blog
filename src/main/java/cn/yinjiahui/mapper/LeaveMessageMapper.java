@@ -16,17 +16,17 @@ public interface LeaveMessageMapper {
             @Result(column = "id",property = "id"),
             @Result(column = "answererId",property = "answererId"),
             @Result(column = "answererId",property = "answererUsername",javaType = String.class,
-                    one=@One(select = "com.yin.mapper.UserMapper.findUsernameById")),
+                    one=@One(select = "cn.yinjiahui.mapper.UserMapper.findUsernameById")),
             @Result(column = "answererId",property = "avatarImgUrl",javaType = String.class,
-                    one=@One(select = "com.yin.mapper.UserMapper.getAvatarUrlByUserId")),
+                    one=@One(select = "cn.yinjiahui.mapper.UserMapper.getAvatarUrlByUserId")),
             @Result(column = "id", property = "replies", javaType = List.class,
-                    many = @Many(select = "com.yin.mapper.LeaveMessageMapper.findChildLeaveMessage")),
+                    many = @Many(select = "cn.yinjiahui.mapper.LeaveMessageMapper.findChildLeaveMessage")),
     })
     List<LeaveMessage> findAllLeaveMessage(@Param("pageName") String pageName);
 
     @Select("select * from leave_message_record where pId=#{pId}")
     @Result(column = "answererId",property = "answererUsername",javaType = String.class,
-            one=@One(select = "com.yin.mapper.UserMapper.findUsernameById"))
+            one=@One(select = "cn.yinjiahui.mapper.UserMapper.findUsernameById"))
     List<LeaveMessage> findChildLeaveMessage(@Param("pId") int pId);
 
     @Insert("insert into leave_message_record(pageName,pId,answererId,leaveMessageDate,leaveMessageContent) " +
@@ -41,7 +41,7 @@ public interface LeaveMessageMapper {
 
     @Select("select pageName,answererId,leaveMessageDate,leaveMessageContent from leave_message_record ORDER BY id DESC")
     @Result(column = "answererId",property = "answererUsername",javaType = String.class,
-            one=@One(select = "com.yin.mapper.UserMapper.findUsernameById"))
+            one=@One(select = "cn.yinjiahui.mapper.UserMapper.findUsernameById"))
     List<LeaveMessage> findNewLeaveWord();
 
 }
