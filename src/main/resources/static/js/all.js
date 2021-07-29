@@ -153,7 +153,6 @@ $('#sidebar_toggle').click(function () {
         error:function () {
         }
     });
-    $('.weixinPublic').attr("src","https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/weixin.jpg");
 });
 
 

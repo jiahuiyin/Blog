@@ -6,5 +6,6 @@ public class BlogTests {
 
     @Test
     public void test()throws Exception{
+
     }
 }
